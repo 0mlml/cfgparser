@@ -8,24 +8,14 @@ import (
 	"strings"
 )
 
+var defaultConfig *Config
+
 func DefaultConfig() *Config {
-	return &Config{
-		BoolOptions: map[string]bool{
-			"debug":        false,
-			"auto_restart": true,
-		},
-		StringOptions: map[string]string{
-			"app_name":             "MyApp",
-			"db_connection_string": "host=localhost;user=user;password=pass;db=mydb",
-		},
-		IntOptions: map[string]int{
-			"max_retries": 3,
-			"port":        8080,
-		},
-		FloatOptions: map[string]float64{
-			"version": 1.0,
-		},
-	}
+	return defaultConfig
+}
+
+func SetDefaultConfig(config *Config) {
+	defaultConfig = config
 }
 
 type Config struct {
