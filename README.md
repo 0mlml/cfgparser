@@ -56,28 +56,28 @@ if err != nil {
 
 ## Customizing Default Configuration
 
-You can customize the default configuration by modifying the `defaultConfig` function.
+You can customize the default configuration by calling the `SetDefaultConfig` function.
 
 ```go
-func DefaultConfig() *Config {
-    return &Config{
-        BoolOptions: map[string]bool{
-            "debug":         false,
-            "auto_restart":  true,
-        },
-        StringOptions: map[string]string{
-            "app_name":             "MyApp",
-            "db_connection_string": "host=localhost;user=user;password=pass;db=mydb",
-        },
-        IntOptions: map[string]int{
-            "max_retries": 3,
-            "port":        8080,
-        },
-        FloatOptions: map[string]float64{
-            "version": 1.0,
-        },
-    }
+var defaultConfig = &cfgparser.Config{
+	BoolOptions: map[string]bool{
+		"debug":        false,
+		"auto_restart": true,
+	},
+	StringOptions: map[string]string{
+		"app_name":             "MyApp",
+		"db_connection_string": "host=localhost;user=user;password=pass;db=mydb",
+	},
+	IntOptions: map[string]int{
+		"max_retries": 3,
+		"port":        8080,
+	},
+	FloatOptions: map[string]float64{
+		"version": 1.0,
+	},
 }
+
+cfgparser.SetDefaultConfig(defaultConfig)
 ```
 
 ## License
