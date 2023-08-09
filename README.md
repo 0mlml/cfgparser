@@ -4,9 +4,9 @@ A simple and extensible configuration parser written in Go. This library provide
 
 ## Installation
 
-`go get github.com/0mlml/go-config-parser`
+`go get github.com/0mlml/cfgparser`
 
-`import "github.com/0mlml/go-config-parser"`
+`import "github.com/0mlml/cfgparser"`
 
 ## Example Configuration File
 
