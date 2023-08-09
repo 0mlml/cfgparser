@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	cfgparser "github.com/0mlml/go-cfg-parser"
+	"github.com/0mlml/cfgparser"
 )
 
 var defaultConfig = &cfgparser.Config{
