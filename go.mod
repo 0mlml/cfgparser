@@ -1,3 +1,3 @@
-module github.com/0mlml/go-cfg-parser
+module github.com/0mlml/cfgparser
 
 go 1.20
