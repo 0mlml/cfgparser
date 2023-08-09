@@ -39,44 +39,47 @@ version=1.2
 ### Parsing Configuration
 
 ```go
-config, err := cfgparser.ParseConfig("path/to/config/file.cfg")
-if err != nil {
-    log.Fatal(err)
+config := &cfgparser.Config{}
+configPath := "example.cfg"
+if err := config.From(configPath); err != nil {
+	log.Fatalf("Error parsing config file: %v", err)
 }
 ```
 
 ### Writing Configuration
 
 ```go
-err := cfgparser.writeConfig("path/to/config/file.cfg", config)
-if err != nil {
-    log.Fatal(err)
+configPath := "example.cfg"
+if err := config.To(configPath); err != nil {
+	log.Fatalf("Error writing config file: %v", err)
 }
 ```
 
 ## Customizing Default Configuration
 
-You can customize the default configuration by calling the `SetDefaultConfig` function.
+You can customize the default configuration by calling the `SetDefaultConfig` function. It will be used to backfill any missing values when parsing a configuration file.
 
 ```go
-var defaultConfig = &cfgparser.Config{
-	BoolOptions: map[string]bool{
-		"debug":        false,
-		"auto_restart": true,
-	},
-	StringOptions: map[string]string{
-		"app_name":             "MyApp",
-		"db_connection_string": "host=localhost;user=user;password=pass;db=mydb",
-	},
-	IntOptions: map[string]int{
-		"max_retries": 3,
-		"port":        8080,
-	},
-	FloatOptions: map[string]float64{
-		"version": 1.0,
-	},
-}
+defaultConfig := &cfgparser.Config{}
+defaultConfig.Literal(
+  map[string]bool{
+    "debug":        false,
+    "auto_restart": true,
+  },
+  map[string]string{
+    "app_name":             "MyApp",
+    "db_connection_string": "host=localhost;user=user;password=pass;db=mydb",
+  },
+  map[string]int{
+    "max_retries": 3,
+    "port":        8080,
+  },
+  map[string]float64{
+    "version": 1.0,
+  },
+)
 
+// Set the default configuration
 cfgparser.SetDefaultConfig(defaultConfig)
 ```
 
