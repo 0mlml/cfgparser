@@ -117,7 +117,7 @@ func (config *Config) From(filename string) error {
 	}
 	defer file.Close()
 
-	config = defaultConfig
+	*config = *defaultConfig
 
 	scanner := bufio.NewScanner(file)
 	var currentSection string
